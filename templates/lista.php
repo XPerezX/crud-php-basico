@@ -2,7 +2,7 @@
 	include 'db.php';
 
 	$sql = "SELECT * FROM cliente ORDER BY  id";
-	$con = mysqli_query($conexao,$sql) or die(mysqli_error($conexao));
+//	$con = mysqli_query($conexao,$sql) or die(mysqli_error($conexao));
 
 ?>
 <!doctype html>

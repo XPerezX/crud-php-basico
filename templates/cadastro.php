@@ -1,5 +1,7 @@
 <?php
 	include 'db.php';
+	include 'colecionador_mock.php';
+	
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,63 +25,39 @@
 						<td><input type="text" name="nome"></td>
 					</tr>
 					<tr>
-						<td>Rua:</td>
-						<td><input type="text" name="rua"></td>
+						<td>Descrição:</td>
+						<td><input type="text" name="descricao"></td>
 					</tr>
 					<tr>
-						<td>Número:</td>
-						<td><input type="text" name="numero"></td>
-					</tr>
-					<tr>
-						<td>Bairro:</td>
-						<td><input type="text" name="bairro"></td>
-					</tr>
-					<tr>
-						<td>Cidade:</td>
-						<td><input type="text" name="cidade"></td>
-					</tr>
-					<tr>
-						<td>UF:</td>
-						<td><input type="text" name="estado"></td>
-					</tr>
-					<tr>
-						<td>Complemento:</td>
-						<td><input type="text" name="complemento"></td>
-					</tr>
-					<tr>
-						<td>Telefone:</td>
-						<td><input type="text" name="fone"></td>
-					</tr>
-					<tr>
-						<td>CPF:</td>
-						<td><input type="text" name="cpf"></td>
-					</tr>
-					<tr>
-						<td>Email:</td>
-						<td><input type="text" name="email"></td>
+						<td>Administrador:</td>
+						<td>
+							<select name="administrador">
+							<?php
+								for($i = 0; $i < count($colecionadores); $i++){
+
+									$c = strval($i);
+									echo "<option value=$c>$colecionadores[$i]</option>";
+									}
+									
+							?>
+							</select>
+						</td>
 					</tr>
 				</table>
 				<input type="submit" value="Salvar">
 			</form>
 
 			<?php //inserindo as informações do cliente no banco de dados.
-				if (!empty($_POST['nome'])and($_POST['rua'])and($_POST['numero'])and($_POST['bairro'])and($_POST['cidade'])and($_POST['estado'])and($_POST['fone'])and($_POST['cpf'])and($_POST['email'])){
+				if (!empty($_POST['nome'])and($_POST['descricao'])and($_POST['administrador'])){
 					$nome 	= $_POST['nome'];
-					$rua 	= $_POST['rua'];
-					$numero = $_POST['numero'];
-					$bairro = $_POST['bairro'];
-					$cidade = $_POST['cidade'];
-					$estado 	= $_POST['estado'];
-					$complemento = $_POST['complemento'];
-					$fone 	= $_POST['fone'];
-					$cpf 	= $_POST['cpf'];
-					$email 	= $_POST['email'];
-
+				
+					$descricao 	= $_POST['descricao'];
+					$administrador 	= $_POST['administrador'];
+					
 					$erro = 0;
 
-
-					$sql = mysqli_query($conexao,"INSERT INTO cliente(nome, rua, numero, bairro, cidade, estado, complemento, fone, cpf, email)
-					VALUES('$nome','$rua', '$numero', '$bairro', '$cidade', '$estado', '$complemento', '$fone', '$cpf', '$email')");
+					$sql = mysqli_query($conexao,"INSERT INTO cliente(nome, descricao, administrador, dataDeEmissao)
+					VALUES('$nome','$descricao', '$administrador','$data')");
 					//header("Location: http://localhost/crud/templates/lista.php");
 					echo '<h1>CADASTRADO COM SUCESSO!</h1>';
 				}
@@ -88,7 +66,6 @@
 
 		<a href="../index.php"><input type="submit" value="voltar"></a>
 	
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
