@@ -1,7 +1,31 @@
 <?php
+// include
 	include 'db.php';
 	include 'colecionador_mock.php';
+
+	var_dump($_POST);
+	//criando grupo no banco de dados.
+	if (isset($_POST['nome'])){
+		echo "socorro";
+		$nome = $_POST['nome'];
+		$descricao = $_POST['descricao'];
+		$administrador = $_POST['administrador'];
+		$data_de_criacao = date("Y-m-d"); 
+
+		
+		$sql = mysqli_prepare($conexao, "INSERT INTO grupo(nome, descricao, data_de_criacao, colecionador_administrador) VALUES (?, ?, ?, ?)");
+		mysqli_stmt_bind_param($sql, 'ssss', $nome, $descricao, $data_de_criacao, $administrador);
+
+		mysqli_stmt_execute($sql);
+
+		
+		
+		
+		//header("Location: http://localhost/crud/templates/lista.php");
+		echo '<h1>CADASTRADO COM SUCESSO!</h1>';
+	}
 	
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,7 +59,7 @@
 							<?php
 								for($i = 0; $i < count($colecionadores); $i++){
 
-									$c = strval($i);
+									$c = strval($colecionadores[$i]);
 									echo "<option value=$c>$colecionadores[$i]</option>";
 									}
 									
@@ -47,22 +71,6 @@
 				<input type="submit" value="Salvar">
 			</form>
 
-			<?php //inserindo as informações do cliente no banco de dados.
-				if (!empty($_POST['nome'])and($_POST['descricao'])and($_POST['administrador'])){
-					$nome 	= $_POST['nome'];
-				
-					$descricao 	= $_POST['descricao'];
-					$administrador 	= $_POST['administrador'];
-					
-					$erro = 0;
-
-					$sql = mysqli_query($conexao,"INSERT INTO cliente(nome, descricao, administrador, dataDeEmissao)
-					VALUES('$nome','$descricao', '$administrador','$data')");
-					//header("Location: http://localhost/crud/templates/lista.php");
-					echo '<h1>CADASTRADO COM SUCESSO!</h1>';
-				}
-				// $sql = mysql_query("DELETE FROM cliente WHERE id > 2");
-			?>
 
 		<a href="../index.php"><input type="submit" value="voltar"></a>
 	

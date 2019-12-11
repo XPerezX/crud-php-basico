@@ -10,6 +10,6 @@
 
 	$id = $_GET['id'];
 	$sql = mysqli_query($conexao, "DELETE FROM cliente WHERE id=".$id);
-	header("Location: http://localhost/crud/templates/lista.php");
+	header("Location: http://localhost/prova/templates/lista.php");
 
 ?>

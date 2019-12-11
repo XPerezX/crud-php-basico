@@ -1,8 +1,8 @@
 <?php
 	include 'db.php';
 
-	$sql = "SELECT * FROM cliente ORDER BY  id";
-//	$con = mysqli_query($conexao,$sql) or die(mysqli_error($conexao));
+	$sql = "SELECT * FROM grupo ORDER BY codigo";
+	$con = mysqli_query($conexao,$sql) or die(mysqli_error($conexao));
 
 ?>
 <!doctype html>
@@ -27,31 +27,18 @@
 				<td>Nome</td>
 				<td>Rua</td>
 				<td>Número</td>
-				<td>Bairro</td>
-				<td>Cidade</td>
-				<td>Estado</td>
-				<td>Complemento</td>
-				<td>Fone</td>
-				<td>CPF</td>
-				<td>E-mail</td>
-				<td>Deletar</td>
-				<td>Editar</td>
+
 			</tr>
 		<?php while($dados = mysqli_fetch_assoc($con)) { ?>
 				<tr>
-					<td><?php echo $dados['id']; ?></td>
+					<td><?php echo $dados['codigo']; ?></td>
 					<td><?php echo $dados['nome']; ?></td>
-					<td><?php echo $dados['rua']; ?></td>
-					<td><?php echo $dados['numero']; ?></td>
-					<td><?php echo $dados['bairro']; ?></td>
-					<td><?php echo $dados['cidade']; ?></td>
-					<td><?php echo $dados['estado']; ?></td>
-					<td><?php echo $dados['complemento']; ?></td>
-					<td><?php echo $dados['fone']; ?></td>
-					<td><?php echo $dados['cpf']; ?></td>
-					<td><?php echo $dados['email']; ?></td>
-					<td><center><a href="del.php?id=<?php echo $dados['id'] ?>"><input type="submit" value="x"></a></center></td>
-					<td><center><a href="atualizar.php?id=<?php echo $dados['id'] ?>"><input type="submit" value="editar"></a></center></td>
+					<td><?php echo $dados['descricao']; ?></td>
+					<td><?php echo $dados['colecionador_administrador']; ?></td>
+					<td><?php echo $dados['data_de_criacao']; ?></td>
+
+					<td><center><a href="del.php?id=<?php echo $dados['codigo'] ?>"><input type="submit" value="x"></a></center></td>
+					<td><center><a href="atualizar.php?id=<?php echo $dados['codigo'] ?>"><input type="submit" value="editar"></a></center></td>
 
 				</tr>
 				

@@ -1,15 +1,10 @@
-CREATE TABLE `cadastro`.`cliente` 
+CREATE TABLE `cadastro`.`grupo` 
   ( 
-     `id`          INT(11) NOT NULL auto_increment PRIMARY KEY, 
+     `codigo`          INT(11) NOT NULL auto_increment PRIMARY KEY, 
      `nome`        VARCHAR(255), 
-     `rua`         VARCHAR(255), 
-     `numero`      VARCHAR(255), 
-     `bairro`      VARCHAR(255), 
-     `cidade`      VARCHAR(255), 
-     `estado`      VARCHAR(255), 
-     `complemento` VARCHAR(255), 
-     `fone`        VARCHAR(255), 
-     `cpf`         VARCHAR(255), 
-     `email`       VARCHAR(255) 
+     `descricao`         VARCHAR(255), 
+     `data_de_criacao`      VARCHAR(255), 
+     `colecionador_administrador`      VARCHAR(255)
+     
   ) 
 engine = innodb 
